@@ -13,8 +13,6 @@ class SearchPage extends React.Component {
 			BooksAPI.search(term, 20).then((books) => {
 				if (books) {
 					if (!books.error) {
-						console.log(books);
-
 						this.setState({ books });
 					}
 				}
@@ -22,11 +20,12 @@ class SearchPage extends React.Component {
 		}
 	};
 	render() {
-		console.log(this.state.books);
 		return (
 			<div>
 				<SearchBox onSubmit={this.onSearchSubmit} />
-				<div className="search-books-results"><Book books={this.state.books} /></div>
+				<div className="search-books-results">
+					<Book books={this.state.books} />
+				</div>
 			</div>
 		);
 	}

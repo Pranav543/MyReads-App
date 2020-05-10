@@ -28,14 +28,15 @@ class Book extends React.Component {
 								</select>
 							</div>
 						</div>
-						<div className="book-title">{book.title} </div>
-						{book.authors.map((author) => {
-							return (
-								<div className="book-authors" key={author}>
-									{author}
-								</div>
-							);
-						})}
+						{book.title && <div className="book-title">{book.title} </div>} {/*implementing null checks*/} 
+						{book.authors &&
+							book.authors.map((author) => {
+								return (
+									<div className="book-authors" key={author}>
+										{author}
+									</div>
+								);
+							})}
 					</div>
 				</li>
 			);
