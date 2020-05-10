@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SearchBox extends React.Component {
 	state = {
@@ -17,9 +18,10 @@ class SearchBox extends React.Component {
 		return (
 			<div className="search-books">
 				<div className="search-books-bar">
-					<button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>
-						Close
-					</button>
+					<Link to="/">
+						<button className="close-search">Close</button>
+					</Link>
+
 					<div className="search-books-input-wrapper">
 						<input
 							type="text"
@@ -28,9 +30,6 @@ class SearchBox extends React.Component {
 							placeholder="Search by title or author"
 						/>
 					</div>
-				</div>
-				<div className="search-books-results">
-					<ol className="books-grid" />
 				</div>
 			</div>
 		);

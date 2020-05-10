@@ -3,31 +3,59 @@ import Book from './Book';
 import './../App.css';
 
 class BookShelf extends React.Component {
-	render() {
-		const books = this.props.books;
-		const read = 'read';
-		const currentlyReading = 'currentlyReading';
-		const wantToRead = 'wantToRead';
+	currentlyReading = () => {
+		const books = this.props.books.filter((book) => {
+			return book.shelf === 'currentlyReading';
+		});
+		return (
+			<div>
+				<div className="bookshelf-books">
+					<Book books={books} />
+				</div>
+			</div>
+		);
+	};
 
+	wantToRead() {
+		const books = this.props.books.filter((book) => {
+			return book.shelf === 'wantToRead';
+		});
+		return (
+			<div>
+				<div className="bookshelf-books">
+					<Book books={books} />
+				</div>
+			</div>
+		);
+	}
+
+	read() {
+		const books = this.props.books.filter((book) => {
+			return book.shelf === 'read';
+		});
+		return (
+			<div>
+				<div className="bookshelf-books">
+					<Book books={books} />
+				</div>
+			</div>
+		);
+	}
+
+	render() {
 		return (
 			<div>
 				<div className="bookshelf">
 					<h2 className="bookshelf-title">Currently Reading</h2>
-					<div className="bookshelf-books">
-						<Book shelf={currentlyReading} books={books} />
-					</div>
+					{this.currentlyReading()}
 				</div>
 				<div className="bookshelf">
 					<h2 className="bookshelf-title">Want to Read</h2>
-					<div className="bookshelf-books">
-						<Book shelf={wantToRead} books={books} />
-					</div>
+					{this.wantToRead()}
 				</div>
 				<div className="bookshelf">
 					<h2 className="bookshelf-title">Read</h2>
-					<div className="bookshelf-books">
-						<Book shelf={read} books={books} />
-					</div>
+					{this.read()}
 				</div>
 			</div>
 		);
