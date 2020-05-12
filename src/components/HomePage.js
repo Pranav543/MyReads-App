@@ -10,6 +10,22 @@ class HomePage extends React.Component {
 		books : []
 	};
 
+	// componentDidUpdate = (book, shelf) => {
+	// 	BooksAPI.update(book, shelf).then((data) => {
+	// 		if (data) {
+				
+	// 			if (!data.error) {
+	// 				console.log(data);
+	// 			}
+	// 		}
+	// 	});
+
+	// 	BooksAPI.getAll().then((books) => {
+	// 		this.setState({ books });
+			
+	// 	});
+	// };
+
 	componentDidMount() {
 		BooksAPI.getAll().then((books) => {
 			this.setState({ books });
@@ -27,7 +43,7 @@ class HomePage extends React.Component {
 						</div>
 						<div className="list-books-content">
 							<div>
-								<BookShelf books={this.state.books} />
+								<BookShelf books={this.state.books} updateShelf={this.componentDidUpdate} />
 							</div>
 						</div>
 					</div>

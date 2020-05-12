@@ -9,11 +9,16 @@ class SearchPage extends React.Component {
 	};
 
 	onSearchSubmit = (term) => {
-		if (term) {
+		if (term !== '') {
 			BooksAPI.search(term, 20).then((books) => {
 				if (books) {
+					console.log(books);
 					if (!books.error) {
+						console.log(books);
 						this.setState({ books });
+					}
+					else {
+						this.setState({ books: [] });
 					}
 				}
 			});
@@ -24,7 +29,11 @@ class SearchPage extends React.Component {
 			<div>
 				<SearchBox onSubmit={this.onSearchSubmit} />
 				<div className="search-books-results">
-					<Book books={this.state.books} />
+					<ol className="books-grid">
+						{this.state.books.map((book) => {
+							return <Book book={book} />;
+						})}
+					</ol>
 				</div>
 			</div>
 		);
