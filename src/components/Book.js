@@ -11,9 +11,7 @@ class Book extends React.Component {
 	componentDidUpdate(book, shelf) {
 		book = this.state.currentBook;
 		shelf = this.state.updatedShelf;
-		BooksAPI.update(book, shelf).then((response) => {
-			// console.log(response);
-		});
+		BooksAPI.update(book, shelf);
 		this.props.needRefresh();
 	}
 
