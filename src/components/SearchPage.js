@@ -12,9 +12,9 @@ class SearchPage extends React.Component {
 		if (term !== '') {
 			BooksAPI.search(term, 20).then((books) => {
 				if (books) {
-					console.log(books);
+					// console.log(books);
 					if (!books.error) {
-						console.log(books);
+						// console.log(books);
 						this.setState({ books });
 					}
 					else {
@@ -24,6 +24,9 @@ class SearchPage extends React.Component {
 			});
 		}
 	};
+
+	needRefresh = () => {};
+
 	render() {
 		return (
 			<div>
@@ -31,7 +34,7 @@ class SearchPage extends React.Component {
 				<div className="search-books-results">
 					<ol className="books-grid">
 						{this.state.books.map((book) => {
-							return <Book book={book} />;
+							return <Book book={book} key={book.id} needRefresh={this.needRefresh} />;
 						})}
 					</ol>
 				</div>

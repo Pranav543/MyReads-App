@@ -1,24 +1,21 @@
 import React from 'react';
-//import * as BooksAPI from './../BooksAPI';
+import * as BooksAPI from './../BooksAPI';
 import './../App.css';
 
 class Book extends React.Component {
 	state = {
-		// books        : [],
-		currentBook  : this.props.book||{},
+		currentBook  : this.props.book || {},
 		updatedShelf : this.props.book.shelf || 'none'
 	};
 
-	// updateShelf = () => {
-	// 	BooksAPI.update(this.state.currentBook, this.state.updatedShelf).then((data) => {
-	// 		if (data) {
-	// 			console.log(data);
-	// 			if (!data.error) {
-	// 				console.log(data);
-	// 			}
-	// 		}
-	// 	});
-	// };
+	componentDidUpdate(book, shelf) {
+		book = this.state.currentBook;
+		shelf = this.state.updatedShelf;
+		BooksAPI.update(book, shelf).then((response) => {
+			// console.log(response);
+		});
+		this.props.needRefresh();
+	}
 
 	renderBooks = () => {
 		return (
@@ -68,12 +65,7 @@ class Book extends React.Component {
 	};
 
 	render() {
-		return (
-			<div>
-				{this.renderBooks()}
-				{console.log(this.state.currentBook, this.state.updatedShelf)}
-			</div>
-		);
+		return <div>{this.renderBooks()}</div>;
 	}
 }
 

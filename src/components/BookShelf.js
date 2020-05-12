@@ -3,10 +3,6 @@ import Book from './Book';
 import './../App.css';
 
 class BookShelf extends React.Component {
-	// transferBookData = (book, shelf) => {
-	// 	this.props.updateShelf(book, shelf);
-	// };
-
 	currentlyReading = () => {
 		const books = this.props.books.filter((book) => {
 			return book.shelf === 'currentlyReading';
@@ -16,7 +12,7 @@ class BookShelf extends React.Component {
 				<div className="bookshelf-books">
 					<ol className="books-grid">
 						{books.map((book) => {
-							return <Book book={book} />;
+							return <Book book={book} key={book.id} needRefresh={this.props.needRefresh} />;
 						})}
 					</ol>
 				</div>
@@ -33,7 +29,7 @@ class BookShelf extends React.Component {
 				<div className="bookshelf-books">
 					<ol className="books-grid">
 						{books.map((book) => {
-							return <Book book={book} />;
+							return <Book book={book} key={book.id} needRefresh={this.props.needRefresh} />;
 						})}
 					</ol>
 				</div>
@@ -50,7 +46,7 @@ class BookShelf extends React.Component {
 				<div className="bookshelf-books">
 					<ol className="books-grid">
 						{books.map((book) => {
-							return <Book book={book} />;
+							return <Book book={book} key={book.id} needRefresh={this.props.needRefresh} />;
 						})}
 					</ol>
 				</div>
